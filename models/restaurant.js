@@ -11,7 +11,12 @@ const restaurantSchema = new Schema({
     },
     url: {
         type: String
+    },
+    user_id : {
+        type: String,
+        required: true
     }
+
 })
 
 module.exports = mongoose.model('Restaurant', restaurantSchema)

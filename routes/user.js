@@ -5,8 +5,6 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth")
 const User = require('../models/user');
-const city = require("../models/city");
-
 
 /**
  * @method - POST
@@ -149,45 +147,5 @@ router.get("/me", auth, async (req, res) => {
       res.send({ message: "Error in Fetching user" });
     }
 });
-
-router.put("/me", auth, async (req, res) => {
-    const user = await User.findById(req.user.id);
-    const {name} = req.body;
-    
-    async function addCity() {
-        user.cities.push(name);
-
-        const doc = await user.save()
-        res.status(200).send(doc)
-    }
-
-    addCity()
-        .catch(error => {
-            res.status(400).send({message: error})
-        })
-
-})
-
-router.delete("/me", auth, async (req, res) => {
-    const user = await User.findById(req.user.id);
-    const {name} = req.body;
-    
-    async function deleteCity() {
-
-        const index = user.cities.indexOf(name);
-        if (index > -1) {
-            user.cities.splice(index, 1)
-        }
-
-        const doc = await user.save()
-        res.status(200).send(doc)
-    }
-
-    deleteCity()
-        .catch(error => {
-            res.status(400).send({message: error})
-        })
-
-})
 
 module.exports = router;

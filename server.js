@@ -2,6 +2,9 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const user = require("./routes/user");
+const city = require("./routes/city")
+const event = require("./routes/event")
+const restaurant = require("./routes/restaurant")
 const InitiateMongoServer = require("./config/db");
 
 const User = require('./models/user')
@@ -21,7 +24,9 @@ app.use(bodyParser.json());
  * Method - *
  */
 app.use("/user", user);
-
+app.use("/city", city);
+app.use("/event", event);
+app.use("/restaurant", restaurant);
 
 //Create a port to listen to
 const PORT = process.env.PORT || 3000;

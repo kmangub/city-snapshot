@@ -17,8 +17,12 @@ const eventSchema = new Schema({
     },
     id: {
         type: String
+    },
+    user_id : {
+        type: String,
+        required: true
     }
     
 })
 
-module.exports = mongoose.model('Restaurant', eventSchema)
+module.exports = mongoose.model('Event', eventSchema)
