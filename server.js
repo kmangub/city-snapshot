@@ -34,7 +34,10 @@ const PORT = process.env.PORT || 3000;
 // If the data is not in JSON form, put it in JSON form:
 app.use(express.urlencoded({extended: true}));
 
-
+// GET Home Page
+app.get("/home", (req, res) => {
+    res.send({message: "This is Home page"})
+})
 //Add listener
 app.listen(PORT, () => {
     console.log(`Now listening on port ${PORT}`)
