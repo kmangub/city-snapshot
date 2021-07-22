@@ -38,6 +38,7 @@ app.use(express.urlencoded({extended: true}));
 app.get("/home", (req, res) => {
     res.send({message: "This is Home page"})
 })
+
 //Add listener
 app.listen(PORT, () => {
     console.log(`Now listening on port ${PORT}`)

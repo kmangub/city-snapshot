@@ -5,6 +5,9 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth")
 const User = require('../models/user');
+const City = require("../models/city");
+const Event = require("../models/event");
+const Restaurant = require("../models/restaurant");
 
 /**
  * @method - POST
@@ -141,7 +144,13 @@ router.get("/me", auth, async (req, res) => {
     try {
       // request.user is getting fetched from Middleware after token authentication
       const user = await User.findById(req.user.id);
-      res.json(user);
+      const restaurants = await Restaurant.find({"user_id": user._id})
+      const events = await Event.find({"user_id": user._id})
+      const cities = await City.find({"user_id": user._id})
+
+      const userInfo = {user: user, restaurants: restaurants, events: events, cities: cities}
+      console.log(userInfo);
+      res.json(userInfo);
 
     } catch (e) {
       res.send({ message: "Error in Fetching user" });
