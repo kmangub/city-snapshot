@@ -6,8 +6,7 @@ const restaurantSchema = new Schema({
         required: true
     },
     address: {
-        type: String,
-        required: true
+        type: String
     },
     url: {
         type: String
@@ -16,7 +15,6 @@ const restaurantSchema = new Schema({
         type: String,
         required: true
     }
-
 })
 
 module.exports = mongoose.model('Restaurant', restaurantSchema)
