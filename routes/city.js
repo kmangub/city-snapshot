@@ -7,8 +7,6 @@ const auth = require("../middleware/auth")
 const User = require('../models/user');
 const City = require("../models/city");
 
-
-
 router.post("/me/cities", auth, async (req, res) => {
     const user = await User.findById(req.user.id);
     const {name, country} = req.body;

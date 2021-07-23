@@ -6,8 +6,7 @@ const citySchema = new Schema({
         required: true
     },
     country: {
-        type: String,
-        required: true
+        type: String
     },
     user_id : {
         type: String,
